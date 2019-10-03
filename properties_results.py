@@ -2,9 +2,6 @@ import requests
 import paginator_results as pages_list
 from bs4 import BeautifulSoup
 
-pages_list_received = []
-pages_list_received = paginate_properties(pages_list)
-
 paginator_url = 'https://www.fincaraiz.com.co/finca-raiz/venta/medellin/?ad=30|1||||1||8,9,3,4,22,2,5,7,19,23,21,18,20|||55|5500006||||||||||||||||1|||1||griddate%20desc||||-1||'
 page = requests.get(paginator_url)
 soup = BeautifulSoup(page.content, 'html.parser')
