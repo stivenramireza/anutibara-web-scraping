@@ -19,7 +19,7 @@
     "propertyAgency": [
         {
             "id": 81666,
-            "builderCompany": "Coninsa Ram\u00f3n H. S.A.",
+            "builderCompany": "Coninsa Ramón H. S.A.",
             "contractType": "Professional",
             "financing": "",
             "schedule": ""
@@ -38,7 +38,7 @@
             "squareMetersPrice": 19444.44,
             "stratum": 6,
             "condition": "",
-            "antiquity": "Menos de 1 a\u00f1o",
+            "antiquity": "Menos de 1 año",
             "floors": "",
             "interiorFloors": 0,
             "weather": "",
@@ -50,31 +50,31 @@
         {
             "interiorFeatures": [
                 "Alarma",
-                "Balc\u00f3n",
-                "Ba\u00f1o Auxiliar",
+                "Balcón",
+                "Baño Auxiliar",
                 "Calentador",
                 "Chimenea",
-                "Cit\u00f3fono",
+                "Citófono",
                 "Closet",
                 "Cocina Integral",
                 "Cuarto de Servicio",
-                "Dep\u00f3sito / Bodega",
+                "Depósito / Bodega",
                 "Hall de Alcobas",
-                "Instalaci\u00f3n de gas",
+                "Instalación de gas",
                 "Sauna / Turco / Jacuzzi",
-                "Zona de lavander\u00eda"
+                "Zona de lavandería"
             ],
             "exteriorFeatures": [
                 "En conjunto cerrado",
                 "Garaje Cubierto",
-                "Jard\u00edn",
+                "Jardín",
                 "Parqueadero Visitantes",
                 "Vigilancia 24x7",
                 "Zonas Verdes"
             ],
             "sectorFeatures": [
                 "Seguridad",
-                "Sobre v\u00eda secundaria"
+                "Sobre vía secundaria"
             ]
         }
     ]
