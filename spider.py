@@ -13,7 +13,7 @@ class Spider():
         owner_property = []
         owner_property_object = {
             'id': int(json_finca_raiz["ClientId"]),
-            'builderCompany': json_finca_raiz["ClientName"],
+            'name': json_finca_raiz["ClientName"],
             'contractType': json_finca_raiz["ContractType"],
             'financing': json_finca_raiz["Financing"],
             'schedule': json_finca_raiz["Schedule"]
