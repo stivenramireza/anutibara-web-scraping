@@ -1,6 +1,7 @@
 import requests, re, json
 from bs4 import BeautifulSoup
 from crawl import Crawl
+from generator import Generator
 import settings
 
 class Converter():
@@ -8,6 +9,7 @@ class Converter():
     def __init__(self):
         super().__init__()
         self.crawl = Crawl()
+        self.generator = Generator()
 
     def convert_string_to_json(self, url):
         soup = self.crawl.scrape_html()
@@ -39,7 +41,7 @@ class Converter():
             'moreFeatures': property_hidden_features,
             'offersType': array_offers_type[1:]
         }
-        print(json.dumps(new_property_dict, indent=4))
+        self.generator.create_json(json_finca_raiz["AdvertId"], new_property_dict)
 
     def convert_old_property_to_json(self, json_finca_raiz, property_location, owner_property, property_features, property_hidden_features):
         old_property_dict = {
@@ -54,4 +56,4 @@ class Converter():
             'features': property_features,
             'moreFeatures': property_hidden_features
         }
-        print(json.dumps(old_property_dict, indent=4))
+        self.generator.create_json(json_finca_raiz["AdvertId"], old_property_dict)
