@@ -1,0 +1,73 @@
+{
+    "code": 4979293,
+    "status": "Active",
+    "type": "Venta",
+    "use": "Usado",
+    "modifyDate": "10/6/2019 7:28:09 PM",
+    "location": [
+        {
+            "country": "Colombia",
+            "department": "Antioquia",
+            "city": "Medellin",
+            "sector": "SurOriente",
+            "neighborhood": "SurOriente",
+            "address": "Carrera 33 No 28-10",
+            "latitude": 6.22772121429443,
+            "longitude": -75.5616836547852
+        }
+    ],
+    "propertyAgency": [
+        {
+            "id": 407638,
+            "name": "Martha Luz Valencia",
+            "contractType": "Particular",
+            "financing": "",
+            "schedule": ""
+        }
+    ],
+    "description": "Excelente apartamento, en una muy buena ubicación",
+    "features": [
+        {
+            "price": "$ 250.000.000",
+            "squareMeters": "56,00",
+            "rooms": 3,
+            "bathrooms": 2,
+            "garages": "1",
+            "privateArea": "56,00",
+            "constructionArea": "56,00",
+            "squareMetersPrice": 4464285.71,
+            "stratum": 4,
+            "condition": "Excelente",
+            "antiquity": "16 a 30 años",
+            "floors": "4º",
+            "interiorFloors": 0,
+            "weather": "",
+            "includesAdministration": "False",
+            "admonPrice": 0.0
+        }
+    ],
+    "moreFeatures": [
+        {
+            "interiorFeatures": [
+                "Barra estilo americano",
+                "Calentador"
+            ],
+            "exteriorFeatures": [
+                "En conjunto cerrado",
+                "Jardín",
+                "Parqueadero Visitantes",
+                "Piscina",
+                "Portería / Recepción",
+                "Salón Comunal",
+                "Vigilancia",
+                "Zona Infantil",
+                "Zonas Verdes"
+            ],
+            "sectorFeatures": [
+                "Supermercados / C.Comerciales",
+                "Trans. Público cercano",
+                "Zona Residencial"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "code": "2393445",
+    "status": "Active",
+    "type": "Venta",
+    "use": "Nuevo",
+    "modifyDate": "10/7/2019 12:01:25 AM",
+    "nameProject": "Palermo",
+    "location": [
+        {
+            "country": "Colombia",
+            "department": "Antioquia",
+            "city": "Medellin",
+            "sector": "SurOriente",
+            "neighborhood": "Loma del Indio",
+            "address": "carrera 38 26-279",
+            "latitude": 0.0,
+            "longitude": 0.0
+        }
+    ],
+    "builderCompany": [
+        {
+            "id": 350013,
+            "name": "Constructora Editec",
+            "contractType": "Professional",
+            "financing": "Financiación: 70 | Método de pago: 30/70",
+            "schedule": "Lunes a Viernes : 10 a.m - 6 p.m | Sábados y Domingos : 10 a.m - 6 p.m | Festivos : 10 a.m - 6 p.m"
+        }
+    ],
+    "description": "PALERMO, donde las cosas importantes se encuentran muy cerca. Proyecto de apartamentos muy exclusivos, contiguo a la Iglesia SAN JOSE DE NAZARETH. Acá encontrará todo a la mano porque en nuestro día a día necesitamos de bancos, restaurantes, supermercados, estaciones de gasolina que nos hacen mas fácil la vida. En el último piso de la torre tendremos un agradable Sky Club con jacuzzi para 10 personas, gimnasio, salón social y una espectacular vista..",
+    "features": [
+        {
+            "price": "Desde $ 292.633.175 Hasta $ 504.651.335",
+            "squareMeters": "58,79 a 101,16",
+            "rooms": 1,
+            "bathrooms": 2,
+            "garages": "",
+            "privateArea": "",
+            "constructionArea": "58,79 a 101,16",
+            "squareMetersPrice": 4977601.21,
+            "stratum": 4,
+            "condition": "",
+            "antiquity": "",
+            "floors": "",
+            "interiorFloors": 0,
+            "weather": "Cálido",
+            "includesAdministration": "False",
+            "admonPrice": 0.0
+        }
+    ],
+    "moreFeatures": [
+        {
+            "interiorFeatures": [
+                "Acceso para camiones",
+                "Acceso para tractomulas",
+                "Alarma",
+                "Barra estilo americano",
+                "Detector de Metales",
+                "Dotado",
+                "Edificio Inteligente",
+                "Finca agrícola",
+                "Hall de Alcobas",
+                "Instalación de gas",
+                "Oficinas administrativas",
+                "Parqueadero interno",
+                "Parqueadero Visitantes",
+                "Salón de conferencias",
+                "Salón de Juegos"
+            ],
+            "exteriorFeatures": [
+                "Acceso Pavimentado",
+                "Corrales",
+                "Cuarto de Escoltas",
+                "Edificio Inteligente",
+                "En conjunto cerrado",
+                "En Edificio",
+                "En zona Comercial",
+                "Kiosko",
+                "Sala de internet",
+                "Sístema de riego",
+                "Tanques de Agua",
+                "Zonas Verdes"
+            ],
+            "sectorFeatures": [
+                "Bombas de gasolina",
+                "Cerca a sector comercial",
+                "Cerca centro comercial",
+                "Colegios / Universidades",
+                "Restaurantes",
+                "Seguridad",
+                "Supermercados / C.Comerciales",
+                "Trans. Público cercano",
+                "Zona Residencial"
+            ]
+        }
+    ],
+    "offersType": [
+        {
+            "property": "Apartamento",
+            "offerType": "Venta",
+            "area": "85.57",
+            "privateArea": "",
+            "rooms": "3",
+            "bathrooms": "3",
+            "price": "424.111.257"
+        },
+        {
+            "property": "Apartamento",
+            "offerType": "Venta",
+            "area": "97.06",
+            "privateArea": "",
+            "rooms": "3",
+            "bathrooms": "2",
+            "price": "490.522.129"
+        },
+        {
+            "property": "Apartamento",
+            "offerType": "Venta",
+            "area": "101.16",
+            "privateArea": "",
+            "rooms": "4",
+            "bathrooms": "3",
+            "price": "504.651.335"
+        },
+        {
+            "property": "Apartamento",
+            "offerType": "Venta",
+            "area": "58.79",
+            "privateArea": "",
+            "rooms": "1",
+            "bathrooms": "2",
+            "price": "292.633.175"
+        }
+    ]
+}

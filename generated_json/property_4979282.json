@@ -1,0 +1,86 @@
+{
+    "code": 4979282,
+    "status": "Active",
+    "type": "Venta",
+    "use": "Usado",
+    "modifyDate": "10/6/2019 7:00:44 PM",
+    "location": [
+        {
+            "country": "Colombia",
+            "department": "Antioquia",
+            "city": "Medellin",
+            "sector": "SurOccidente",
+            "neighborhood": "Belén",
+            "address": "Calle 15a 79-153",
+            "latitude": 6.22187566757202,
+            "longitude": -75.6008529663086
+        }
+    ],
+    "propertyAgency": [
+        {
+            "id": 1780375,
+            "name": "Maria Isabel Calle",
+            "contractType": "Particular",
+            "financing": "",
+            "schedule": ""
+        }
+    ],
+    "description": "Casa unifamiliar con 4 alcobas y alcoba del servicio con baño, alcoba principal con vestier y jacuzzi y una de las alcobas auxiliares con mansarda, patio en baldosa y techo de madera, terraza con balcón, parqueadero doble lineal, ubicada en belén- loma de los Bernal, unidad cerrada con piscina, juegos infantiles, salón social, circuito cerrado de televisión, parqueadero de visitantes y portería 24 horas.",
+    "features": [
+        {
+            "price": "$ 650.000.000",
+            "squareMeters": "180,00",
+            "rooms": 5,
+            "bathrooms": 4,
+            "garages": "2",
+            "privateArea": "180,00",
+            "constructionArea": "180,00",
+            "squareMetersPrice": 3611111.11,
+            "stratum": 5,
+            "condition": "Excelente",
+            "antiquity": "16 a 30 años",
+            "floors": "2º",
+            "interiorFloors": 0,
+            "weather": "",
+            "includesAdministration": "False",
+            "admonPrice": 230000.0
+        }
+    ],
+    "moreFeatures": [
+        {
+            "interiorFeatures": [
+                "Alarma",
+                "Balcón",
+                "Baño Auxiliar",
+                "Calentador",
+                "Cocina Integral",
+                "Cuarto de servicio",
+                "Despensa",
+                "Estudio",
+                "Instalación de gas",
+                "Patio",
+                "Piso en Baldosa /  Mármol",
+                "Zona de lavandería"
+            ],
+            "exteriorFeatures": [
+                "Circuito cerrado de TV",
+                "En conjunto cerrado",
+                "Garaje(s)",
+                "Parqueadero Visitantes",
+                "Piscina",
+                "Salón Comunal",
+                "Vigilancia",
+                "Zonas Verdes"
+            ],
+            "sectorFeatures": [
+                "Colegios / Universidades",
+                "Parques cercanos",
+                "Supermercados / C.Comerciales",
+                "Trans. Público cercano",
+                "Zona Campestre",
+                "Zona Comercial",
+                "Zona Residencial"
+            ]
+        }
+    ]
+}
