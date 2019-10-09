@@ -2,7 +2,6 @@ from secrets import Secrets
 from bs4 import BeautifulSoup
 import requests, re
 
-
 def request_properties(properties_pages_list):
     paginator_url = Secrets.MAIN_PAGE_URL
     page = requests.get(paginator_url)

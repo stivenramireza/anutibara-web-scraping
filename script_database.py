@@ -8,7 +8,7 @@ def connect_to_db():
         print("Database connected successfully") 
     except:   
         print("Error to connect to database")
-    database = client.get_database(Secrets.DB_NAME) 
+    database = client.get_database(Secrets.DB_NAME)
     return database
     
 def insert_document(db, list_json_files):
