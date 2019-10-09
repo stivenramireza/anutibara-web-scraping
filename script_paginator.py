@@ -17,8 +17,7 @@ def paginate_properties():
     return pages_list_to_process
 
 def main():
-    pages_list = []
-    pages_list = paginate_properties(pages_list)
+    paginate_properties()
 
 if __name__ == "__main__":
     main()
