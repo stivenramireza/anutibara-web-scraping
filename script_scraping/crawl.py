@@ -1,6 +1,5 @@
-import requests
+import requests, settings
 from bs4 import BeautifulSoup
-import settings
 
 class Crawl():
 

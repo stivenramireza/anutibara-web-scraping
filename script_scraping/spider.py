@@ -1,6 +1,3 @@
-import requests, re, json
-from bs4 import BeautifulSoup
-import settings
 from crawl import Crawl
 
 class Spider():
@@ -9,52 +6,52 @@ class Spider():
         super().__init__()
         self.crawl = Crawl()
 
-    def extract_owner_property(self, json_finca_raiz):
+    def extract_owner_property(self, json_property_agency):
         owner_property = []
         owner_property_object = {
-            'id': int(json_finca_raiz["ClientId"]),
-            'name': json_finca_raiz["ClientName"],
-            'contractType': json_finca_raiz["ContractType"],
-            'financing': json_finca_raiz["Financing"],
-            'schedule': json_finca_raiz["Schedule"]
+            'id': int(json_property_agency["ClientId"]),
+            'name': json_property_agency["ClientName"],
+            'contractType': json_property_agency["ContractType"],
+            'financing': json_property_agency["Financing"],
+            'schedule': json_property_agency["Schedule"]
         }
         owner_property.append(owner_property_object)
         return owner_property
     
-    def extract_location(self, json_finca_raiz):
+    def extract_location(self, json_property_agency):
         property_location = []
         location_object = {
             'country': 'Colombia',
             'department': 'Antioquia',
             'city': 'Medellin',
-            'sector': json_finca_raiz["Location3"],
-            'neighborhood': json_finca_raiz["Neighborhood"],
-            'address': json_finca_raiz["Address"],
-            'latitude': float(json_finca_raiz["Latitude"]),
-            'longitude': float(json_finca_raiz["Longitude"])
+            'sector': json_property_agency["Location3"],
+            'neighborhood': json_property_agency["Neighborhood"],
+            'address': json_property_agency["Address"],
+            'latitude': float(json_property_agency["Latitude"]),
+            'longitude': float(json_property_agency["Longitude"])
         }
         property_location.append(location_object)
         return property_location
 
-    def extract_big_features(self, json_finca_raiz):
+    def extract_big_features(self, json_property_agency):
         property_features = []
         features_object = {
-            'price': json_finca_raiz['FormatedPrice'],
-            'squareMeters': json_finca_raiz['FormatedSurface'][0:-3],
-            'rooms': int(json_finca_raiz['Rooms']),
-            'bathrooms': int(json_finca_raiz['Baths']),
-            'garages': json_finca_raiz['Garages'],
-            'privateArea': json_finca_raiz['FormatedLivingArea'][0:-3],
-            'constructionArea': json_finca_raiz['FormatedSurface'][0:-3],
-            'squareMetersPrice': float(json_finca_raiz['PriceM2']),
-            'stratum': int(json_finca_raiz['Stratum']),
-            'condition': json_finca_raiz['Condition'],
-            'antiquity': json_finca_raiz['Ages'],
-            'floors': json_finca_raiz['Floor'],
-            'interiorFloors': int(json_finca_raiz['InteriorFloors']),
-            'weather': json_finca_raiz['Weather'],
-            'includesAdministration': json_finca_raiz['IncludesAdministration'],
-            'admonPrice': float(json_finca_raiz['AdministrationPrice'])
+            'price': json_property_agency['FormatedPrice'],
+            'squareMeters': json_property_agency['FormatedSurface'][0:-3],
+            'rooms': int(json_property_agency['Rooms']),
+            'bathrooms': int(json_property_agency['Baths']),
+            'garages': json_property_agency['Garages'],
+            'privateArea': json_property_agency['FormatedLivingArea'][0:-3],
+            'constructionArea': json_property_agency['FormatedSurface'][0:-3],
+            'squareMetersPrice': float(json_property_agency['PriceM2']),
+            'stratum': int(json_property_agency['Stratum']),
+            'condition': json_property_agency['Condition'],
+            'antiquity': json_property_agency['Ages'],
+            'floors': json_property_agency['Floor'],
+            'interiorFloors': int(json_property_agency['InteriorFloors']),
+            'weather': json_property_agency['Weather'],
+            'includesAdministration': json_property_agency['IncludesAdministration'],
+            'admonPrice': float(json_property_agency['AdministrationPrice'])
         }
         property_features.append(features_object)
         return property_features

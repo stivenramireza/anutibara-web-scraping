@@ -1,8 +1,6 @@
-import requests, re, json
-from bs4 import BeautifulSoup
 from crawl import Crawl
 from generator import Generator
-import settings
+import settings, json, re
 
 class Converter():
 
@@ -23,37 +21,37 @@ class Converter():
                 json_property.append(json_to_strip)
                 json_property = " ".join(json_property)
 
-        json_finca_raiz = json.loads(json_property)
-        return json_finca_raiz
+        json_property_agency = json.loads(json_property)
+        return json_property_agency
     
-    def convert_new_property_to_json(self, json_finca_raiz, property_location, owner_property, property_features, property_hidden_features, array_offers_type):
+    def convert_new_property_to_json(self, json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type):
         new_property_dict = {
-            'code': json_finca_raiz["AdvertId"],
-            'status': json_finca_raiz["Status"],
-            'type': json_finca_raiz["TransactionType"],
+            'code': json_property_agency["AdvertId"],
+            'status': json_property_agency["Status"],
+            'type': json_property_agency["TransactionType"],
             'use': 'Nuevo',
-            'modifyDate': json_finca_raiz["ModifyDate"],
-            'nameProject': json_finca_raiz["Title"],
+            'modifyDate': json_property_agency["ModifyDate"],
+            'nameProject': json_property_agency["Title"],
             'location': property_location,
             'builderCompany': owner_property,
-            'description': json_finca_raiz["Description"],
+            'description': json_property_agency["Description"],
             'features': property_features,
             'moreFeatures': property_hidden_features,
             'offersType': array_offers_type[1:]
         }
-        self.generator.create_json(json_finca_raiz["AdvertId"], new_property_dict)
+        self.generator.create_json(json_property_agency["AdvertId"], new_property_dict)
 
-    def convert_old_property_to_json(self, json_finca_raiz, property_location, owner_property, property_features, property_hidden_features):
+    def convert_old_property_to_json(self, json_property_agency, property_location, owner_property, property_features, property_hidden_features):
         old_property_dict = {
-            'code': int(json_finca_raiz["AdvertId"]),
-            'status': json_finca_raiz["Status"],
-            'type': json_finca_raiz["TransactionType"],
+            'code': int(json_property_agency["AdvertId"]),
+            'status': json_property_agency["Status"],
+            'type': json_property_agency["TransactionType"],
             'use': 'Usado',
-            'modifyDate': json_finca_raiz["ModifyDate"],
+            'modifyDate': json_property_agency["ModifyDate"],
             'location': property_location,
             'propertyAgency': owner_property,
-            'description': json_finca_raiz["Description"],
+            'description': json_property_agency["Description"],
             'features': property_features,
             'moreFeatures': property_hidden_features
         }
-        self.generator.create_json(json_finca_raiz["AdvertId"], old_property_dict)
+        self.generator.create_json(json_property_agency["AdvertId"], old_property_dict)

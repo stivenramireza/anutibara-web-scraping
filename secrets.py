@@ -1,5 +1,5 @@
-import os
 from dotenv import load_dotenv
+import os
 
 class Secrets:
 
@@ -15,3 +15,8 @@ class Secrets:
     DB_NAME = os.environ.get('DB_NAME')
     DB_USER = os.environ.get('DB_USER')
     DB_PASS = os.environ.get('DB_PASS')
+
+    URL_TO_SCRAPE = os.environ.get('URL_TO_SCRAPE')
+    MAIN_PAGE_URL = os.environ.get('MAIN_PAGE_URL')
+    MAIN_PAGE_SHORT_URL = os.environ.get('MAIN_PAGE_SHORT_URL')
+    MAIN_URL = os.environ.get('MAIN_URL')

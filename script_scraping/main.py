@@ -1,6 +1,5 @@
 from crawl import Crawl
 from scraper import Scraper
-
 import settings
 
 def main():
