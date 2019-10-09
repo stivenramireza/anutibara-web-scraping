@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 from secrets import Secrets
 import requests, re
 
-def paginate_properties(pages_list_to_process):
+def paginate_properties():
+    pages_list_to_process = []
     main_page_url = Secrets.MAIN_PAGE_URL
     page = requests.get(main_page_url)
     soup = BeautifulSoup(page.text, 'html.parser')
