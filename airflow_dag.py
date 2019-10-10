@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, "/home/stivenramireza/airflow/dags/scraping")
+sys.path.insert(0, "/usr/local/airflow/dags/scraping")
 import scraping.script_paginator as PaginatorService
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -17,26 +17,30 @@ default_args = {
             'retry_delay': timedelta(seconds = 10)
         }
 
-def print_task2():
-    print('-> Test passed')
+def print_task2(**kwargs):
+    ti = kwargs['ti']
+    pages_list = ti.xcom_pull(key=None, task_ids='generate_pages_urls')
+    return pages_list
 
 dag = DAG(
             dag_id='web-scraping',
             default_args=default_args,
-            start_date=datetime(2019,10,9),
+            start_date=datetime.now(),
             schedule_interval=timedelta(minutes=720)
         )
 
-op_script_paginator = PythonOperator(
-            task_id='script_paginator',
+pages_urls_task = PythonOperator(
+            task_id='generate_pages_urls',
             python_callable=PaginatorService.paginate_properties,
+            provide_context=True,
             dag=dag
         )
 
-op_script_properties = PythonOperator(
-            task_id='script_properties',
+properties_urls_task = PythonOperator(
+            task_id='generate_properties_urls',
             python_callable=print_task2,
+            provide_context=True,
             dag=dag
         )
 
-op_script_paginator >> op_script_properties
+pages_urls_task >> properties_urls_task
