@@ -15,9 +15,3 @@ def paginate_properties():
     for i in range(1, total_pages + 1):
         pages_list_to_process.append(Secrets.MAIN_PAGE_SHORT_URL + '/?ad=30|'+ str(i) +'||||1||8,9,3,4,22,2,5,7,19,23,21,18,20|||55|5500006||||||||||||||||1|||1||griddate%20desc||||-1||')
     return pages_list_to_process
-
-def main():
-    paginate_properties()
-
-if __name__ == "__main__":
-    main()

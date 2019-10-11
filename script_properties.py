@@ -20,10 +20,3 @@ def request_properties(properties_pages_list):
         url_property = Secrets.MAIN_URL + url_property.replace("'", "")
         properties_pages_list.append(url_property)
     return properties_pages_list
-
-def main():
-    pages_list = []
-    pages_list = request_properties(pages_list)
-
-if __name__ == "__main__":
-    main()
