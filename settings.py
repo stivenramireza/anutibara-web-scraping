@@ -1,5 +1,5 @@
-from secrets import Secrets
+import secrets
 
 def init():
     global url
-    url = Secrets.URL_TO_SCRAPE
+    url = secrets.URL_TO_SCRAPE
