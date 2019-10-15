@@ -1,11 +1,8 @@
 import secrets
 import json
+import script_database as database
 
-def create_json(id_property, json_data):
-    document = 'property_' + str(id_property)
-    try:
-        with open('./generated_json/' + document + '.json', 'w') as outfile:
-            json.dump(json_data, outfile, indent = 4, ensure_ascii = False)
-            print("JSON document " + document + " generated successfully")
-    except:
-        print("Error to generate JSON document")
+def create_json(json_data):
+    json_file = json.loads(json.dumps(json_data, indent = 4, ensure_ascii = False))
+    db = database.connect_to_db()
+    database.insert_document(db, json_file)

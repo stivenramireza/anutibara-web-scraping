@@ -1,11 +1,11 @@
 import crawl
 import spider
 import converter
-import settings
+import script_scraping as ScrapingService
 
 def scrape_url(url):
     is_new = False
-    url_scraped = settings.url.split('-')
+    url_scraped = ScrapingService.url.split('-')
     url_scraped = " ".join(url_scraped)
     if(url_scraped.find("nuevo") != -1):
         is_new = True
@@ -14,8 +14,8 @@ def scrape_url(url):
     return is_new
 
 def scrape_property():
-    is_new = scrape_url(settings.url)
-    json_property_agency = converter.convert_string_to_json(settings.url)
+    is_new = scrape_url(ScrapingService.url)
+    json_property_agency = converter.convert_string_to_json(ScrapingService.url)
     property_location = spider.extract_location(json_property_agency)
     owner_property = spider.extract_owner_property(json_property_agency)
     property_features = spider.extract_big_features(json_property_agency)

@@ -1,6 +1,6 @@
 import crawl
 import generator
-import settings, json, re
+import json, re
 
 def convert_string_to_json(url):
     soup = crawl.scrape_html()
@@ -19,7 +19,7 @@ def convert_string_to_json(url):
 
 def convert_new_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type):
     new_property_dict = {
-        'code': json_property_agency["AdvertId"],
+        'code': int(json_property_agency["AdvertId"]),
         'status': json_property_agency["Status"],
         'type': json_property_agency["TransactionType"],
         'use': 'Nuevo',
@@ -32,7 +32,7 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
         'moreFeatures': property_hidden_features,
         'offersType': array_offers_type[1:]
     }
-    generator.create_json(json_property_agency["AdvertId"], new_property_dict)
+    generator.create_json(new_property_dict)
 
 def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features):
     old_property_dict = {
@@ -47,4 +47,4 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
         'features': property_features,
         'moreFeatures': property_hidden_features
     }
-    generator.create_json(json_property_agency["AdvertId"], old_property_dict)
+    generator.create_json(old_property_dict)

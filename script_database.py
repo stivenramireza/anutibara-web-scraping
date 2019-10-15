@@ -11,21 +11,10 @@ def connect_to_db():
     database = client.get_database(secrets.DB_NAME)
     return database
     
-def insert_document(db, list_json_files):
+def insert_document(db, json_file):
     try:
         properties = db.properties
-        for json_file in list_json_files:
-            with open('./generated_json/' + json_file + ".json") as f:
-                file_data = json.load(f)
-            properties.insert_one(file_data)
-            print("JSON document " + json_file + " inserted successfully")
+        properties.insert_one(json_file)
+        print("JSON document inserted to DB-Scraping successfully")
     except:
         print("Error to insert document")
-
-def main():
-    db = connect_to_db()
-    list_json_files = ['property_2393445', 'property_4471500', 'property_4471519', 'property_4587456', 'property_4837830', 'property_4979282', 'property_4979293']
-    insert_document(db, list_json_files)
-
-if __name__ == "__main__":
-    main()

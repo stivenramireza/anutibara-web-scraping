@@ -1,11 +1,9 @@
+import secrets
 import crawl
 import scraper
-import settings
 
-def main():
-    settings.init()
+def scrape(url_to_scrape):
+    global url
+    url = url_to_scrape
     crawl.scrape_html()
     scraper.scrape_property()
-
-if __name__ == '__main__':
-    main()

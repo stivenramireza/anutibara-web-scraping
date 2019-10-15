@@ -38,7 +38,7 @@ def extract_big_features(json_property_agency):
         'privateArea': json_property_agency['FormatedLivingArea'][0:-3],
         'constructionArea': json_property_agency['FormatedSurface'][0:-3],
         'squareMetersPrice': float(json_property_agency['PriceM2']),
-        'stratum': int(json_property_agency['Stratum']),
+        'stratum': json_property_agency['Stratum'],
         'condition': json_property_agency['Condition'],
         'antiquity': json_property_agency['Ages'],
         'floors': json_property_agency['Floor'],
@@ -52,32 +52,35 @@ def extract_big_features(json_property_agency):
 
 def extract_hidden_extra():
     soup = crawl.scrape_html()
-    extra = soup.find('div', id='DivEstrasHidden')
-    extras = []
-    for h4 in extra.find_all('h4'):
-        extras.append(h4.text)
     array_hidden_extra = []
-    property_interior_features = []
-    property_exterior_features = []
-    property_sector_features = []
+    if(soup.find('div', id='DivEstrasHidden') == None):
+        array_hidden_extra = ""
+    else:
+        extra = soup.find('div', id='DivEstrasHidden')
+        extras = []
+        for h4 in extra.find_all('h4'):
+            extras.append(h4.text)
+        property_interior_features = []
+        property_exterior_features = []
+        property_sector_features = []
 
-    for extra in extras:
-        if(extra.find('Caracteristicas Interiores') == 0): # Extract Interior Features
-            interior_features = soup.find('ul', id='tblInitialInteriores')
-            property_interior_features = [li.text for li in interior_features.find_all('li')]
-        elif(extra.find('Caracteristicas Exteriores') == 0): # Extract Exterior Features
-            exterior_features = soup.find('ul', id='tblInitialExteriores')
-            property_exterior_features = [li.text for li in exterior_features.find_all('li')]
-        elif(extra.find('Caracteristicas del Sector') == 0): # Extract Sector Features
-            sector_features = soup.find('ul', id='tblInitialdelSector')
-            property_sector_features = [li.text for li in sector_features.find_all('li')]
-    
-    hidden_extra_object = {
-        'interiorFeatures': property_interior_features,
-        'exteriorFeatures': property_exterior_features,
-        'sectorFeatures': property_sector_features
-    }
-    array_hidden_extra.append(hidden_extra_object)
+        for extra in extras:
+            if(extra.find('Caracteristicas Interiores') == 0): # Extract Interior Features
+                interior_features = soup.find('ul', id='tblInitialInteriores')
+                property_interior_features = [li.text for li in interior_features.find_all('li')]
+            elif(extra.find('Caracteristicas Exteriores') == 0): # Extract Exterior Features
+                exterior_features = soup.find('ul', id='tblInitialExteriores')
+                property_exterior_features = [li.text for li in exterior_features.find_all('li')]
+            elif(extra.find('Caracteristicas del Sector') == 0): # Extract Sector Features
+                sector_features = soup.find('ul', id='tblInitialdelSector')
+                property_sector_features = [li.text for li in sector_features.find_all('li')]
+        
+        hidden_extra_object = {
+            'interiorFeatures': property_interior_features,
+            'exteriorFeatures': property_exterior_features,
+            'sectorFeatures': property_sector_features
+        }
+        array_hidden_extra.append(hidden_extra_object)
     return array_hidden_extra
 
 def extract_offers_type():
