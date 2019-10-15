@@ -45,7 +45,7 @@ pages_urls_task = PythonOperator(
 properties_urls_task = PythonOperator(
                 task_id='generate_properties_urls',
                 python_callable=PropertyService.request_properties,
-                op_kwargs={'pages_list': pages_list},
+                op_kwargs={'properties_pages_list': pages_list},
                 provide_context=True,
                 dag=dag
             )
