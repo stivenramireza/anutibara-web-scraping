@@ -1,21 +1,21 @@
 from pymongo import MongoClient
-from secrets import Secrets
+import secrets
 import json
 
 def connect_to_db():
     try: 
-        client = MongoClient('mongodb+srv://' + Secrets.DB_USER +':' + Secrets.DB_PASS + '@' + Secrets.DB_HOST + '/' + Secrets.DB_NAME) 
+        client = MongoClient('mongodb+srv://' + secrets.DB_USER +':' + secrets.DB_PASS + '@' + secrets.DB_HOST + '/' + secrets.DB_NAME) 
         print("Database connected successfully") 
     except:   
         print("Error to connect to database")
-    database = client.get_database(Secrets.DB_NAME)
+    database = client.get_database(secrets.DB_NAME)
     return database
     
 def insert_document(db, list_json_files):
     try:
         properties = db.properties
         for json_file in list_json_files:
-            with open('./' + Secrets.PATH_JSON + '/' + json_file + ".json") as f:
+            with open('./generated_json/' + json_file + ".json") as f:
                 file_data = json.load(f)
             properties.insert_one(file_data)
             print("JSON document " + json_file + " inserted successfully")
