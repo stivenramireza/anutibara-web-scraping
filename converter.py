@@ -3,7 +3,7 @@ import generator
 import json, re
 
 def convert_string_to_json(url):
-    soup = crawl.scrape_html()
+    soup = crawl.scrape_html(url)
     pattern = re.compile("var sfAdvert = \{.*\:.*\:.*\};")
     json_property = ''
     for script in soup.find_all("script", type="text/javascript"):

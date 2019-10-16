@@ -50,8 +50,8 @@ def extract_big_features(json_property_agency):
     property_features.append(features_object)
     return property_features
 
-def extract_hidden_extra():
-    soup = crawl.scrape_html()
+def extract_hidden_extra(url):
+    soup = crawl.scrape_html(url)
     array_hidden_extra = []
     if(soup.find('div', id='DivEstrasHidden') == None):
         array_hidden_extra = ""
@@ -83,8 +83,8 @@ def extract_hidden_extra():
         array_hidden_extra.append(hidden_extra_object)
     return array_hidden_extra
 
-def extract_offers_type():
-    soup = crawl.scrape_html()
+def extract_offers_type(url):
+    soup = crawl.scrape_html(url)
     offers_type = soup.find('div', id='typology')
     table = offers_type.find('table')
     array_offers_type = []
@@ -115,4 +115,3 @@ def extract_offers_type():
         }
         array_offers_type.append(table_object)
     return array_offers_type
-    
