@@ -16,15 +16,14 @@ default_args = {
     'email_on_failure': True,
     'email_on_retry': True,
     'retries': 5,
-    'retry_delay': timedelta(seconds = 10),
-    'pool': 'scraper_pool'
+    'retry_delay': timedelta(seconds = 10)
 }
 
 dag = DAG(
     dag_id='web-scraping',
     default_args=default_args,
     start_date=datetime.now(),
-    schedule_interval=timedelta(minutes=720)
+    schedule_interval=timedelta(minutes=720),
 )
 
 url_pages_task = PythonOperator(
@@ -43,6 +42,9 @@ url_properties_task = PythonOperator(
 scrape_property_db_task = PythonOperator(
     task_id='scrape_property_and_load_db',
     provide_context=True,
+    priority_weight=10000,
+    pool='scraper_pool',
+    queue='default',
     python_callable=ScrapingService.scrape,
     dag=dag
 )
