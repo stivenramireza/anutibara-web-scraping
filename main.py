@@ -9,7 +9,6 @@ def main():
     url_pages_list = PaginatorService.paginate_properties()
     url_properties_list = []
     url_properties_list = PropertyService.request_properties(url_pages_list)
-    
     # Multiprocessing
     p = Pool(40)
     p.map(ScrapingService.scrape, url_properties_list)
