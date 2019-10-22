@@ -1,7 +1,6 @@
 import crawl
 import spider
 import converter
-import script_scraping as ScrapingService
 
 def scrape_url(url):
     is_new = False
@@ -15,7 +14,7 @@ def scrape_url(url):
 
 def scrape_property(url):
     is_new = scrape_url(url)
-    json_property_agency = converter.convert_string_to_json(ScrapingService.url)
+    json_property_agency = converter.convert_string_to_json(url)
     property_location = spider.extract_location(json_property_agency)
     owner_property = spider.extract_owner_property(json_property_agency)
     property_features = spider.extract_big_features(json_property_agency)
@@ -29,7 +28,8 @@ def scrape_property(url):
             owner_property,
             property_features,
             property_hidden_features,
-            array_offers_type
+            array_offers_type,
+            url
         )
     else: # Si es una propiedad vieja
         converter.convert_old_property_to_json(
@@ -37,5 +37,6 @@ def scrape_property(url):
             property_location,
             owner_property,
             property_features,
-            property_hidden_features
+            property_hidden_features,
+            url
         )
