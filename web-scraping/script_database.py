@@ -3,11 +3,11 @@ import secrets
 import json
 
 def connect_to_db():
-    try: 
-        client = MongoClient('mongodb+srv://' + secrets.DB_USER +':' + secrets.DB_PASS + '@' + secrets.DB_HOST + '/' + secrets.DB_NAME) 
-        print("Database connected successfully") 
-    except:   
-        print("Error to connect to database")
+    try:
+        client = MongoClient(f'mongodb+srv://{secrets.DB_USER}:{secrets.DB_PASS}@{secrets.DB_HOST}/{secrets.DB_NAME}')
+        print("Database connected successfully")
+    except Exception as e:
+        print("Error to connect to database: ", e)
     database = client.get_database(secrets.DB_NAME)
     return database
     

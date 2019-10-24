@@ -34,7 +34,7 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
         'use': 'Nuevo',
         'nameProject': json_property_agency["Title"],
         'location': property_location,
-        'builderCompany': owner_property,
+        'ownerProperty': owner_property,
         'description': json_property_agency["Description"],
         'features': property_features,
         'moreFeatures': property_hidden_features,
@@ -42,7 +42,7 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
     }
     generator.create_json(new_property_dict)
 
-def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, url):
+def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
     old_property_dict = {
         'urlProperty': url, 
         'scrapingDate': scraping_date,
@@ -51,10 +51,12 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
         'status': json_property_agency["Status"],
         'type': json_property_agency["TransactionType"],
         'use': 'Usado',
+        'nameProject': json_property_agency["Title"],
         'location': property_location,
-        'propertyAgency': owner_property,
+        'ownerProperty': owner_property,
         'description': json_property_agency["Description"],
         'features': property_features,
-        'moreFeatures': property_hidden_features
+        'moreFeatures': property_hidden_features,
+        'offersType': array_offers_type[1:]
     }
     generator.create_json(old_property_dict)

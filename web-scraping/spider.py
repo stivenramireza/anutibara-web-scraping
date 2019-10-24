@@ -85,33 +85,37 @@ def extract_hidden_extra(url):
 
 def extract_offers_type(url):
     soup = crawl.scrape_html(url)
-    offers_type = soup.find('div', id='typology')
-    table = offers_type.find('table')
     array_offers_type = []
-    for tr in table.find_all('tr'):
-        property = tr.find_all('td')[0].text.split()
-        property = " ".join(property)
-        offer_type = tr.find_all('td')[1].text.split()
-        offer_type = " ".join(offer_type)
-        area = tr.find_all('td')[2].text.split()
-        area = " ".join(area)[0:-3].replace(",", ".")
-        private_area = tr.find_all('td')[3].text.split()
-        private_area = " ".join(private_area)[0:-3].replace(",", ".")
-        rooms = tr.find_all('td')[4].text.split()
-        rooms = " ".join(rooms)
-        baths = tr.find_all('td')[5].text.split()
-        baths = " ".join(baths)
-        price = tr.find_all('td')[6].text.split()
-        price = " ".join(price)[2:]
+    if(soup.find('div', id='typology') == None):
+        array_offers_type.append('')
+    else:
+        offers_type = soup.find('div', id='typology')
+        table = offers_type.find('table')
         
-        table_object = {
-            'property': property,
-            'offerType': offer_type,
-            'area': area,
-            'privateArea': private_area,
-            'rooms': rooms,
-            'bathrooms': baths,
-            'price': price
-        }
-        array_offers_type.append(table_object)
+        for tr in table.find_all('tr'):
+            property = tr.find_all('td')[0].text.split()
+            property = " ".join(property)
+            offer_type = tr.find_all('td')[1].text.split()
+            offer_type = " ".join(offer_type)
+            area = tr.find_all('td')[2].text.split()
+            area = " ".join(area)[0:-3].replace(",", ".")
+            private_area = tr.find_all('td')[3].text.split()
+            private_area = " ".join(private_area)[0:-3].replace(",", ".")
+            rooms = tr.find_all('td')[4].text.split()
+            rooms = " ".join(rooms)
+            baths = tr.find_all('td')[5].text.split()
+            baths = " ".join(baths)
+            price = tr.find_all('td')[6].text.split()
+            price = " ".join(price)[2:]
+
+            table_object = {
+                'property': property,
+                'offerType': offer_type,
+                'area': area,
+                'privateArea': private_area,
+                'rooms': rooms,
+                'bathrooms': baths,
+                'price': price
+            }
+            array_offers_type.append(table_object)
     return array_offers_type

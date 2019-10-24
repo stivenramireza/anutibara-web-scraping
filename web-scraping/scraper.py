@@ -19,9 +19,9 @@ def scrape_property(url):
     owner_property = spider.extract_owner_property(json_property_agency)
     property_features = spider.extract_big_features(json_property_agency)
     property_hidden_features = spider.extract_hidden_extra(url)
+    array_offers_type = spider.extract_offers_type(url)
     
     if(is_new): # Si es una propiedad nueva
-        array_offers_type = spider.extract_offers_type(url)
         converter.convert_new_property_to_json(
             json_property_agency,
             property_location,
@@ -38,5 +38,6 @@ def scrape_property(url):
             owner_property,
             property_features,
             property_hidden_features,
+            array_offers_type,
             url
         )
