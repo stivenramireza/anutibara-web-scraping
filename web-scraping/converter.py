@@ -24,6 +24,9 @@ def convert_string_to_json(url):
 
 def convert_new_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
     modify_date = json_property_agency["ModifyDate"].split()[0]
+    modify_date = modify_date.split('/')
+    modify_date = modify_date[1] + '/' + modify_date[0] + '/' + modify_date[2]
+    print(modify_date)
     modify_hour = json_property_agency["ModifyDate"].split()[1:]
     modify_hour = " ".join(modify_hour)
     new_property_dict = {
@@ -44,10 +47,13 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
         'moreFeatures': property_hidden_features,
         'offersType': array_offers_type[1:]
     }
-    generator.create_json(new_property_dict)
+    #generator.create_json(new_property_dict)
 
 def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
     modify_date = json_property_agency["ModifyDate"].split()[0]
+    modify_date = modify_date.split('/')
+    modify_date = modify_date[1] + '/' + modify_date[0] + '/' + modify_date[2]
+    print(modify_date)
     modify_hour = json_property_agency["ModifyDate"].split()[1:]
     modify_hour = " ".join(modify_hour)
     old_property_dict = {
@@ -68,4 +74,4 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
         'moreFeatures': property_hidden_features,
         'offersType': array_offers_type[1:]
     }
-    generator.create_json(old_property_dict)
+    #generator.create_json(old_property_dict)
