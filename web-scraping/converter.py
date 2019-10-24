@@ -4,9 +4,8 @@ import datetime as date
 import json, re
 
 date = date.datetime.now()
-date_ = str(date.strftime("%m")) + '/' + str(date.strftime("%d")) + '/' + str(date.strftime("%Y"))
-hour = str(date.strftime("%I")) + ':' + str(date.strftime("%M")) + ':' + str(date.strftime("%S")) + ' ' + str(date.strftime("%p"))
-scraping_date = date_ + ' ' + hour
+scraping_date = str(date.strftime("%d")) + '/' + str(date.strftime("%m")) + '/' + str(date.strftime("%Y"))
+scraping_hour = str(date.strftime("%X"))
 
 def convert_string_to_json(url):
     soup = crawl.scrape_html(url)
@@ -24,10 +23,15 @@ def convert_string_to_json(url):
     return json_property_agency
 
 def convert_new_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
+    modify_date = json_property_agency["ModifyDate"].split()[0]
+    modify_hour = json_property_agency["ModifyDate"].split()[1:]
+    modify_hour = " ".join(modify_hour)
     new_property_dict = {
         'urlProperty': url,
         'scrapingDate': scraping_date,
-        'modifyDate': json_property_agency["ModifyDate"],
+        'scrapingHour': scraping_hour,
+        'modifyDate': modify_date,
+        'modifyHour': modify_hour,
         'code': int(json_property_agency["AdvertId"]),
         'status': json_property_agency["Status"],
         'type': json_property_agency["TransactionType"],
@@ -43,10 +47,15 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
     generator.create_json(new_property_dict)
 
 def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
+    modify_date = json_property_agency["ModifyDate"].split()[0]
+    modify_hour = json_property_agency["ModifyDate"].split()[1:]
+    modify_hour = " ".join(modify_hour)
     old_property_dict = {
         'urlProperty': url, 
         'scrapingDate': scraping_date,
-        'modifyDate': json_property_agency["ModifyDate"],
+        'scrapingHour': scraping_hour,
+        'modifyDate': modify_date,
+        'modifyHour': modify_hour,
         'code': int(json_property_agency["AdvertId"]),
         'status': json_property_agency["Status"],
         'type': json_property_agency["TransactionType"],

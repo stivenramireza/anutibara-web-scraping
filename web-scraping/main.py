@@ -10,11 +10,14 @@ def main():
     url_properties_list = []
     url_properties_list = PropertyService.request_properties(url_pages_list)
     # Multiprocessing
-    p = Pool(20)
-    p.map(ScrapingService.scrape, url_properties_list)
-    p.terminate()
-    p.join()
-    print('Scraping Service has finished successfully')
+    try:
+        p = Pool(40)
+        p.map(ScrapingService.scrape, url_properties_list)
+        p.terminate()
+        p.join()
+        print('Scraping Service has finished successfully')
+    except:
+        print('Error to scrape property')
 
 if __name__ == "__main__":
     main()

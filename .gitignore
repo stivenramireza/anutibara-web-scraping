@@ -1,0 +1,6 @@
+__pycache__/
+data-cleaning/.ipynb_checkpoints/
+web-scraping/.env
+web-scraping/.env.dev
+web-scraping/.ipynb_checkpoints/
+web-scraping/__pycache__/*
