@@ -109,13 +109,13 @@ def extract_offers_type(url):
             price = " ".join(price)[2:]
 
             table_object = {
-                'property': property,
-                'offerType': offer_type,
-                'area': area,
-                'privateArea': private_area,
-                'rooms': rooms,
-                'bathrooms': baths,
-                'price': price
+                'propertyOffersType': property,
+                'transactionOffersType': offer_type,
+                'areaOffersType': area,
+                'privateAreaOffersType': private_area,
+                'roomsOffersType': rooms,
+                'bathroomsOffersType': baths,
+                'priceOffersType': price
             }
             array_offers_type.append(table_object)
     return array_offers_type
