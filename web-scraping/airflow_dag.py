@@ -1,9 +1,9 @@
 import sys
 sys.path.insert(0, "/usr/local/airflow/dags/scraping")
-import scraping.script_paginator as PaginatorService
-import scraping.script_properties as PropertyService
-import scraping.script_scraping as ScrapingService
-import scraping.script_database as DatabaseService
+import scraping.paginator as PaginatorService
+import scraping.properties as PropertyService
+import scraping.scraping as ScrapingService
+import scraping.database as DatabaseService
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
@@ -42,9 +42,6 @@ url_properties_task = PythonOperator(
 scrape_property_db_task = PythonOperator(
     task_id='scrape_property_and_load_db',
     provide_context=True,
-    priority_weight=10000,
-    pool='scraper_pool',
-    queue='default',
     python_callable=ScrapingService.scrape,
     dag=dag
 )

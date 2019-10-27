@@ -1,7 +1,7 @@
 from multiprocessing import Pool
-import script_paginator as PaginatorService
-import script_properties as PropertyService
-import script_scraping as ScrapingService
+import paginator as PaginatorService
+import properties as PropertyService
+import scraping as ScrapingService
 from time import sleep
 
 def main():
