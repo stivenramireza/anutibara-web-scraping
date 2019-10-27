@@ -24,4 +24,4 @@ def convert_collection_to_dataframe(properties):
     df_offers_type = json_normalize(json_documents, 'offersType')
     df = pd.concat([df_general_info, df_location, df_owner_property, 
                     df_features, df_more_features, df_offers_type], axis=1)
-    print(df.columns)
+    return df
