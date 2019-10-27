@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, "../web-scraping/database")
+sys.path.append('../web-scraping/')
 import database as database
 
 def main():
