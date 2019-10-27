@@ -8,8 +8,7 @@ def main():
     db = database.connect_to_db()
     properties = db.properties
     df = DataPreparationService.convert_collection_to_dataframe(properties)
-    DataCleaningService.clean_status(df['status'])
-    DataCleaningService.clean_use_status(df['use'])
+    DataCleaningService.clean_data(df)
 
 if __name__ == "__main__":
     main()

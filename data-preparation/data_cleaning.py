@@ -10,3 +10,7 @@ def clean_use_status(use_status_column):
     if(use_status_column == 'Nuevo'):
         return True
     return False
+
+def clean_data(dataframe):
+    clean_status(dataframe['status'])
+    clean_use_status(dataframe('use'))
