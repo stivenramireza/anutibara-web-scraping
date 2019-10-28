@@ -7,8 +7,8 @@ import data_cleaning as DataCleaningService
 def main():
     db = database.connect_to_db()
     properties = db.properties
-    df = DataPreparationService.convert_collection_to_dataframe(properties)
-    DataCleaningService.clean_data(df)
+    dataframe = DataPreparationService.convert_collection_to_dataframe(properties)
+    DataCleaningService.clean_data(dataframe)
 
 if __name__ == "__main__":
     main()
