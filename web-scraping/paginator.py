@@ -12,6 +12,6 @@ def paginate_properties():
     for script in soup.find_all("script", type="text/javascript"):
         if(pattern.findall(script.text)):
             total_pages = int((pattern.findall(script.text)[0].split()[-1])[0:-1])
-    for i in range(int(total_pages/2) + 2, total_pages):
+    for i in range(1, 4):
         pages_list_to_process.append(secrets.MAIN_PAGE_SHORT_URL + '/?ad=30|'+ str(i) +'||||1||8,9,3,4,22,2,5,7,19,23,21,18,20|||55|5500006||||||||||||||||1|||1||griddate%20desc||||-1||')
     return pages_list_to_process

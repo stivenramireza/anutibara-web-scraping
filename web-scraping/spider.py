@@ -41,7 +41,7 @@ def extract_big_features(json_property_agency):
         'stratum': json_property_agency['Stratum'],
         'condition': json_property_agency['Condition'],
         'antiquity': json_property_agency['Ages'],
-        'floors': json_property_agency['Floor'],
+        'floor': json_property_agency['FloorId'],
         'interiorFloors': int(json_property_agency['InteriorFloors']),
         'weather': json_property_agency['Weather'],
         'includesAdministration': json_property_agency['IncludesAdministration'],
