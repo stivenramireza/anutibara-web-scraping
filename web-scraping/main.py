@@ -16,8 +16,8 @@ def main():
         p.terminate()
         p.join()
         print('Scraping Service has finished successfully')
-    except:
-        print('Error to scrape property')
+    except Exception as e:
+        print('Error to scrape property: ', e)
 
 if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ web-scraping/.env
 web-scraping/.env.dev
 web-scraping/__pycache__/
 web-scraping/.ipynb_checkpoints/
-data-preparation/.env
-data-preparation/.env.dev
-data-preparation/__pycache__/
-data-preparation/.ipynb_checkpoints/
+data-cleaning/.env
+data-cleaning/.env.dev
+data-cleaning/__pycache__/
+data-cleaning/.ipynb_checkpoints/
