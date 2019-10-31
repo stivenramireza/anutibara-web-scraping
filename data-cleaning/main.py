@@ -8,10 +8,7 @@ def main():
     db = database.connect_to_db()
     properties = db.properties
     try:
-        p = Pool(40)
-        p.map(DataPreparationService.clean_data, properties)
-        p.terminate()
-        p.join()
+        DataPreparationService.clean_data(properties)
         print('Data has been cleaned successfully')
     except Exception as e:
         print('Error to prepare and clean data: ', e)
