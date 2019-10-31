@@ -125,6 +125,6 @@ def clean_data(properties):
     df_renamed_new_properties = rename_new_properties_column(df_new_properties)
     df_renamed_old_properties = rename_old_properties_column(df_old_properties)
     df_cleaned_new_properties = DataCleaningService.clean_new_properties_dataframe(df_renamed_new_properties)
-    print(df_cleaned_new_properties.head(10))
+    print(df_cleaned_new_properties)
     df_cleaned_old_properties = DataCleaningService.clean_old_properties_dataframe(df_renamed_old_properties)
-    print(df_cleaned_old_properties.head(10))
+    print(df_cleaned_old_properties)
