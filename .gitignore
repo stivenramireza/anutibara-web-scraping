@@ -7,3 +7,4 @@ data-cleaning/.env
 data-cleaning/.env.dev
 data-cleaning/__pycache__/
 data-cleaning/.ipynb_checkpoints/
+data-cleaning/dask-worker-space/
