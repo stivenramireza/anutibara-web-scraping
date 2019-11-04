@@ -1,4 +1,3 @@
-from multiprocessing import Pool
 import sys
 sys.path.append('../web-scraping/')
 import database

@@ -3,13 +3,13 @@ from re import sub
 from decimal import Decimal
 
 def clean_active(column):
-    return column.apply(lambda status: True if (status == 'Active') else False)
+    return column.apply(lambda status: True if (status == 'Active') else False, meta=(column, 'bool'))
 
 def clean_new_property(column):
-    return column.apply(lambda status: True if (status == 'Nuevo') else False)
+    return column.apply(lambda status: True if (status == 'Nuevo') else False, meta=(column, 'bool'))
 
 def clean_includes_administration(column):
-    return column.apply(lambda status: True if (status == 'Nuevo') else False)
+    return column.apply(lambda status: True if (status == 'Nuevo') else False, meta=(column, 'bool'))
 
 def clean_garages(column):
     column = column.replace('', value = 0, regex = True)
@@ -28,11 +28,12 @@ def clean_area(column):
     return column.astype(float)
 
 def clean_price(column):
-    return column.apply(lambda price: Decimal(sub(r'[^\d,]', '', price))).astype(int)
+    return column.apply(lambda price: Decimal(sub(r'[^\d,]', '', price)), meta=(column, 'int'))
+    return column.astype(int)
 
 def clean_square_meters(column):
     column = column.str[0:-3]
-    column = column.apply(lambda meters: Decimal(sub(r'[^\d,]', '', meters)))
+    column = column.apply(lambda meters: Decimal(sub(r'[^\d,]', '', meters)), meta=(column, 'float'))
     return column.astype(float)
 
 def clean_rooms(column):
@@ -48,12 +49,12 @@ def clean_new_private_area(column):
 def clean_old_private_area(column):
     column = column.str[0:-2]
     column = column.replace('', value = '0', regex = True)
-    column = column.apply(lambda area: Decimal(sub(r'[^\d.]', '', area)))
+    column = column.apply(lambda area: Decimal(sub(r'[^\d.]', '', area)), meta=(column, 'float'))
     return column.astype(float)
 
 def clean_construction_area(column):
     column = column.str[0:-3]
-    column = column.apply(lambda area: Decimal(sub(r'[^\d,]', '', area)))
+    column = column.apply(lambda area: Decimal(sub(r'[^\d,]', '', area)), meta=(column, 'float'))
     return column.astype(float)
 
 def clean_general_columns(dataframe):
@@ -65,7 +66,6 @@ def clean_general_columns(dataframe):
     clean_stratum(cleaned_dataframe['stratum'])
     clean_floor(cleaned_dataframe['floor'])
     clean_price(cleaned_dataframe['price'])
-
 
 def clean_new_properties_dataframe(dataframe):
     cleaned_dataframe = dataframe
