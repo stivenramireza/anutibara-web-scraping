@@ -22,6 +22,9 @@ def convert_new_properties_to_dataframe(properties):
                                     'nameProject', 
                                     'description'])
     ddf_general_info = dd.from_pandas(df_general_info, npartitions=10)
+    ddf_general_info = ddf_general_info.rename(columns={
+        'offerType': 'offer_type'
+    })
 
     # Location DataFrame
     df_location = json_normalize(new_properties_json, record_path='location', meta='urlProperty')
@@ -34,11 +37,12 @@ def convert_new_properties_to_dataframe(properties):
     # Features DataFrame
     df_features = json_normalize(new_properties_json, record_path='features', meta='urlProperty')
     ddf_features = dd.from_pandas(df_features, npartitions=10)
-    new_columns = ['admon_price', 'antiquity', 'general_bathrooms', 'condition', 'construction_area',
-                'floor', 'garages', 'includes_administration', 'interior_floors', 'range_prices', 
-                'range_private_area', 'general_rooms', 'square_meters', 'square_meters_price', 'stratum', 
-                'weather', 'urlProperty']
-    ddf_features = ddf_features.rename(columns=dict(zip(ddf_features.columns, new_columns)))
+    ddf_features = ddf_features.rename(columns={
+        'price':'range_prices',
+        'rooms': 'general_rooms',
+        'bathrooms': 'general_bathrooms',
+        'privateArea': 'range_private_area'
+    })
 
     # More Features DataFrame
     df_more_features = json_normalize(new_properties_json, record_path='moreFeatures', meta='urlProperty')
@@ -50,6 +54,9 @@ def convert_new_properties_to_dataframe(properties):
 
     # Remove Repeated Columns
     ddf_new_properties = remove_repeated_columns(ddf)
+
+    # Rename Columns
+    ddf_new_properties = rename_columns(ddf_new_properties)
     return ddf_new_properties
 
 def convert_old_properties_to_dataframe(properties):
@@ -93,34 +100,10 @@ def convert_old_properties_to_dataframe(properties):
 
     # Remove Repeated Columns
     ddf_old_properties = remove_repeated_columns(ddf)
+
+    # Rename Columns
+    ddf_old_properties = rename_columns(ddf_old_properties)
     return ddf_old_properties
-
-def rename_new_properties_column(dataframe):
-    new_columns = ['area', 'bathrooms', 'offer_type', 'price', 'private_area',
-               'property', 'rooms', 'id_mongoose', 'id_property', 'scraping_date', 
-               'scraping_hour', 'modify_hour', 'modify_date', 'code', 'active', 'type',
-               'new_property', 'name_project', 'description', 'address', 'city', 'country', 
-               'department', 'latitude', 'longitude', 'neighborhood', 'sector', 'contract_type',
-               'financing', 'id', 'name', 'schedule', 'admon_price', 'antiquity', 'general_bathrooms',
-               'condition', 'construction_area', 'floor', 'garages', 'includes_administration', 
-               'interior_floors', 'range_prices', 'range_private_area', 'general_rooms', 'square_meters',
-               'square_meters_price', 'stratum', 'weather', 'exterior_features', 'interior_features', 
-               'sector_features']
-    renamed_dataframe = rename_columns(new_columns, dataframe)
-    return renamed_dataframe
-
-def rename_old_properties_column(dataframe):
-    new_columns = ['id_mongoose', 'id_property', 'scraping_date', 
-               'scraping_hour', 'modify_hour', 'modify_date', 'code', 'active', 'type',
-               'new_property', 'name_project', 'description', 'address', 'city', 'country', 
-               'department', 'latitude', 'longitude', 'neighborhood', 'sector', 'contract_type',
-               'financing', 'id', 'name', 'schedule', 'admon_price', 'antiquity', 'bathrooms',
-               'condition', 'construction_area', 'floor', 'garages', 'includes_administration', 
-               'interior_floors', 'price', 'private_area', 'rooms', 'square_meters',
-               'square_meters_price', 'stratum', 'weather', 'exterior_features', 'interior_features', 
-               'sector_features']
-    renamed_dataframe = rename_columns(new_columns, dataframe)
-    return renamed_dataframe
 
 def remove_repeated_columns(dataframe):
     return dataframe.loc[:,~dataframe.columns.duplicated()]
@@ -133,14 +116,40 @@ def concat_dataframes(list_dataframes, index, has_index):
     ddf.reset_index()
     return ddf
 
-def rename_columns(list_columns, dataframe):
-    dataframe = dataframe.rename(columns=dict(zip(dataframe.columns, list_columns)))
+def rename_columns(dataframe):
+    dataframe = dataframe.rename(columns={
+        "_id": "id_mongoose", 
+        "urlProperty":"id_property",
+        "scrapingDate": "scraping_date",
+        "scrapingHour": "scraping_hour",
+        "modifyDate": "modify_date",
+        "modifyHour": "modify_hour",
+        "status": "active",
+        "use": "new_property",
+        "nameProject": "name_project",
+        "offersType": "offers_type",
+        "id": "id_owner_property",
+        "name": "name_owner_property",
+        "contractType": "contract_type_owner_property",
+        "financing": "financing_owner_property",
+        "schedule": "schedule_owner_property",
+        "squareMeters": "square_meters",
+        "privateArea": "private_area",
+        "constructionArea": "construction_area",
+        "squareMetersPrice": "square_meters_price",
+        "interiorFloors": "interior_floors",
+        "includesAdministration": "includes_administration",
+        "admonPrice": "admon_price",
+        "interiorFeatures": "interior_features",
+        "exteriorFeatures": "exterior_features",
+        "sectorFeatures": "sector_features"
+    })
     return dataframe
 
 def clean_data(properties):
     df_new_properties = convert_new_properties_to_dataframe(properties)
     df_old_properties = convert_old_properties_to_dataframe(properties)
-    df_renamed_new_properties = rename_new_properties_column(df_new_properties)
-    df_renamed_old_properties = rename_old_properties_column(df_old_properties)
-    df_cleaned_new_properties = DataCleaningService.clean_new_properties_dataframe(df_renamed_new_properties)
-    df_cleaned_old_properties = DataCleaningService.clean_old_properties_dataframe(df_renamed_old_properties)
+    df_cleaned_new_properties = DataCleaningService.clean_new_properties_dataframe(df_new_properties)
+    print(df_cleaned_new_properties.columns)
+    df_cleaned_old_properties = DataCleaningService.clean_old_properties_dataframe(df_old_properties)
+    print(df_cleaned_old_properties.columns)
