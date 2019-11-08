@@ -4,8 +4,7 @@ import requests, re, secrets
 def request_properties(pages_list):
     properties_pages_list = []
     for paginator in pages_list:
-        paginator_url = paginator
-        page = requests.get(paginator_url)
+        page = requests.get(paginator)
         soup = BeautifulSoup(page.content, 'html.parser')
         division = soup.find(id='divAdverts')
         for i in range(0, 34):
