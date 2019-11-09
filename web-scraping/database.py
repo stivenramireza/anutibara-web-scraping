@@ -4,7 +4,7 @@ import json
 
 def connect_to_db():
     try:
-        client = MongoClient(f'mongodb://localhost:27017')
+        client = MongoClient(f'mongodb+srv://{secrets.DB_USER}:{secrets.DB_PASS}@{secrets.DB_HOST}/{secrets.DB_NAME}')
         print("Database connected successfully")
     except Exception as e:
         print("Error to connect to database: ", e)
