@@ -11,7 +11,7 @@ def main():
     url_properties_list = PropertyService.request_properties(url_pages_list)
     # Multiprocessing
     try:
-        p = Pool(40)
+        p = Pool(20)
         p.map(ScrapingService.scrape, url_properties_list)
         p.terminate()
         p.join()

@@ -28,8 +28,8 @@ def paginate_properties():
     for script in soup_rent.find_all("script", type="text/javascript"):
         if(pattern.findall(script.text)):
             total_pages_rent = int((pattern.findall(script.text)[0].split()[-1])[0:-1])
-    for i in range(1, 2):
+    for i in range(1, int(total_pages_buy / 4) + 1):
         pages_list_to_process.append(secrets.MAIN_PAGE_SHORT_URL_BUY + '/?ad=30|'+ str(i) +'||||1||8,9,3,4,22,2,5,7,19,23,21,18,20|||55|5500006||||||||||||||||1|||1||griddate%20desc||||-1||')
-    for i in range(1, 2):
+    for i in range(1, int(total_pages_rent / 4) + 1):
         pages_list_to_process.append(secrets.MAIN_PAGE_SHORT_URL_RENT + '/?ad=30|'+ str(i) +'||||2||8,9,3,4,22,2,5,7,19,23,21,18,20|||55|5500006||||||||||||||||1|||1||griddate%20desc||||-1||')
     return pages_list_to_process
