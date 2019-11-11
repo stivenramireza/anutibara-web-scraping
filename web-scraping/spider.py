@@ -1,7 +1,6 @@
 import crawl
 
 def extract_owner_property(json_property_agency):
-    owner_property = []
     owner_property_object = {
         'id': int(json_property_agency["ClientId"]),
         'name': json_property_agency["ClientName"],
@@ -9,11 +8,9 @@ def extract_owner_property(json_property_agency):
         'financing': json_property_agency["Financing"],
         'schedule': json_property_agency["Schedule"]
     }
-    owner_property.append(owner_property_object)
-    return owner_property
+    return owner_property_object
 
 def extract_location(json_property_agency):
-    property_location = []
     location_object = {
         'country': 'Colombia',
         'department': 'Antioquia',
@@ -24,11 +21,9 @@ def extract_location(json_property_agency):
         'latitude': float(json_property_agency["Latitude"]),
         'longitude': float(json_property_agency["Longitude"])
     }
-    property_location.append(location_object)
-    return property_location
+    return location_object
 
 def extract_big_features(json_property_agency):
-    property_features = []
     features_object = {
         'price': json_property_agency['FormatedPrice'],
         'squareMeters': json_property_agency['FormatedSurface'][0:-3],
@@ -47,14 +42,13 @@ def extract_big_features(json_property_agency):
         'includesAdministration': json_property_agency['IncludesAdministration'],
         'admonPrice': float(json_property_agency['AdministrationPrice'])
     }
-    property_features.append(features_object)
-    return property_features
+    return features_object
 
 def extract_hidden_extra(url):
     soup = crawl.scrape_html(url)
-    array_hidden_extra = []
+    hidden_extra_object = dict()
     if(soup.find('div', id='DivEstrasHidden') == None):
-        array_hidden_extra = ""
+        hidden_extra_object = ""
     else:
         extra = soup.find('div', id='DivEstrasHidden')
         extras = []
@@ -80,8 +74,7 @@ def extract_hidden_extra(url):
             'exteriorFeatures': property_exterior_features,
             'sectorFeatures': property_sector_features
         }
-        array_hidden_extra.append(hidden_extra_object)
-    return array_hidden_extra
+    return hidden_extra_object
 
 def extract_offers_type(url):
     soup = crawl.scrape_html(url)
@@ -111,11 +104,11 @@ def extract_offers_type(url):
             table_object = {
                 'property': property,
                 'offerType': offer_type,
-                'area': area,
-                'privateArea': private_area,
-                'rooms': rooms,
-                'bathrooms': baths,
-                'price': price
+                'areaOfferType': area,
+                'privateAreaOfferType': private_area,
+                'roomsOfferType': rooms,
+                'bathroomsOfferType': baths,
+                'priceOfferType': price
             }
             array_offers_type.append(table_object)
     return array_offers_type
