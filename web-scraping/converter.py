@@ -91,7 +91,7 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
         'sectorFeatures': property_hidden_features['sectorFeatures'],
         'offersType': array_offers_type[1:]
     }
-    #generator.create_json(new_property_dict)
+    generator.create_json(new_property_dict)
 
 def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, url):
     modify_date = json_property_agency["ModifyDate"].split()[0]
@@ -146,6 +146,9 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
         'interiorFloors': property_features['interiorFloors'],
         'weather': property_features['weather'],
         'includesAdministration': property_features['includesAdministration'],
-        'admonPrice': property_features['admonPrice']
+        'admonPrice': property_features['admonPrice'],
+        'interiorFeatures': property_hidden_features['interiorFeatures'],
+        'exteriorFeatures': property_hidden_features['exteriorFeatures'],
+        'sectorFeatures': property_hidden_features['sectorFeatures']
     }
-    #generator.create_json(old_property_dict)
+    generator.create_json(old_property_dict)
