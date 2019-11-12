@@ -38,6 +38,5 @@ def scrape_property(url):
             owner_property,
             property_features,
             property_hidden_features,
-            array_offers_type,
             url
         )
