@@ -13,3 +13,5 @@ data-analytics/.env.dev
 data-analytics/__pycache__/
 data-analytics/.ipynb_checkpoints/
 data-analytics/dask-worker-space/
+notebooks/.ipynb_checkpoints/
+notebooks/dask-worker-space/
