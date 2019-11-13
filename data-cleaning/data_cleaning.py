@@ -2,6 +2,12 @@ import re
 from re import sub
 from decimal import Decimal
 
+def clean_id_moongose(column):
+    return column.astype(str)
+
+def clean_code(column):
+    return column.astype(int)
+
 def clean_active(column):
     return column.apply(lambda status: True if (status == 'Active') else False, meta=(column, 'bool'))
 
