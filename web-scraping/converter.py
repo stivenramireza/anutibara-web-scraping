@@ -45,6 +45,18 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
     modify_hour_str = datetime.strftime(modify_hour_object, '%H:%M:%S')
     modify_hour = modify_hour_str + " " + am_pm
     modify_hour = convert_12_to_24(modify_hour)
+
+    array_interior_features = []
+    array_exterior_features = []
+    array_sector_features = []
+    for key in property_hidden_features:
+        if(key == 'interiorFeatures'):
+            array_interior_features.append(property_hidden_features[key])
+        elif(key == 'exteriorFeatures'):
+            array_exterior_features.append(property_hidden_features[key])
+        else:
+            array_sector_features.append(property_hidden_features[key])
+
     new_property_dict = {
         'urlProperty': url,
         'scrapingDate': scraping_date,
@@ -86,14 +98,14 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
         'weather': property_features['weather'],
         'includesAdministration': property_features['includesAdministration'],
         'admonPrice': property_features['admonPrice'],
-        'interiorFeatures': property_hidden_features['interiorFeatures'],
-        'exteriorFeatures': property_hidden_features['exteriorFeatures'],
-        'sectorFeatures': property_hidden_features['sectorFeatures'],
+        'interiorFeatures': array_interior_features,
+        'exteriorFeatures': array_exterior_features,
+        'sectorFeatures': array_sector_features,
         'offersType': array_offers_type[1:]
     }
     generator.create_json(new_property_dict)
 
-def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, url):
+def convert_old_property_to_json(json_property_agency, property_location, owner_property, property_features, property_hidden_features, array_offers_type, url):
     modify_date = json_property_agency["ModifyDate"].split()[0]
     modify_date = modify_date.split('/')
     modify_date = modify_date[1] + '/' + modify_date[0] + '/' + modify_date[2]
@@ -106,6 +118,18 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
     modify_hour_str = datetime.strftime(modify_hour_object, '%H:%M:%S')
     modify_hour = modify_hour_str + " " + am_pm
     modify_hour = convert_12_to_24(modify_hour)
+
+    array_interior_features = []
+    array_exterior_features = []
+    array_sector_features = []
+    for key in property_hidden_features:
+        if(key == 'interiorFeatures'):
+            array_interior_features.append(property_hidden_features[key])
+        elif(key == 'exteriorFeatures'):
+            array_exterior_features.append(property_hidden_features[key])
+        else:
+            array_sector_features.append(property_hidden_features[key])
+
     old_property_dict = {
         'urlProperty': url, 
         'scrapingDate': scraping_date,
@@ -147,8 +171,9 @@ def convert_old_property_to_json(json_property_agency, property_location, owner_
         'weather': property_features['weather'],
         'includesAdministration': property_features['includesAdministration'],
         'admonPrice': property_features['admonPrice'],
-        'interiorFeatures': property_hidden_features['interiorFeatures'],
-        'exteriorFeatures': property_hidden_features['exteriorFeatures'],
-        'sectorFeatures': property_hidden_features['sectorFeatures']
+        'interiorFeatures': array_interior_features,
+        'exteriorFeatures': array_exterior_features,
+        'sectorFeatures': array_sector_features,
+        'offersType': array_offers_type[1:]
     }
     generator.create_json(old_property_dict)

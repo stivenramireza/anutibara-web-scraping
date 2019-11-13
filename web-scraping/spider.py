@@ -46,7 +46,7 @@ def extract_big_features(json_property_agency):
 
 def extract_hidden_extra(url):
     soup = crawl.scrape_html(url)
-    hidden_extra_object = dict()
+    hidden_extra_object = {}
     if(soup.find('div', id='DivEstrasHidden') == None):
         hidden_extra_object = ""
     else:
@@ -74,6 +74,7 @@ def extract_hidden_extra(url):
             'exteriorFeatures': property_exterior_features,
             'sectorFeatures': property_sector_features
         }
+        #array_hidden_extra.append(hidden_extra_object)
     return hidden_extra_object
 
 def extract_offers_type(url):
