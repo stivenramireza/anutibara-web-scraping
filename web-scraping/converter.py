@@ -46,16 +46,16 @@ def convert_new_property_to_json(json_property_agency, property_location, owner_
     modify_hour = modify_hour_str + " " + am_pm
     modify_hour = convert_12_to_24(modify_hour)
 
-    array_interior_features = []
-    array_exterior_features = []
-    array_sector_features = []
+    array_interior_features = ''
+    array_exterior_features = ''
+    array_sector_features = ''
     for key in property_hidden_features:
         if(key == 'interiorFeatures'):
-            array_interior_features.append(property_hidden_features[key])
+            array_interior_features = property_hidden_features[key]
         elif(key == 'exteriorFeatures'):
-            array_exterior_features.append(property_hidden_features[key])
+            array_exterior_features = property_hidden_features[key]
         else:
-            array_sector_features.append(property_hidden_features[key])
+            array_sector_features = property_hidden_features[key]
 
     new_property_dict = {
         'urlProperty': url,

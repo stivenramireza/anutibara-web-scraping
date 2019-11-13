@@ -21,9 +21,9 @@ def convert_new_properties_to_dataframe(list_properties):
         "rooms": "general_rooms",
         "price": "range_prices",
         "squareMeters": "range_square_meters",
+        "privateArea": "range_private_area",
         "constructionArea": "range_construction_area",
         "offerType": "offer_type",
-        "privateArea": "range_private_area",
         "areaOfferType": "area",
         "bathroomsOfferType": "bathrooms",
         "priceOfferType": "price",
@@ -40,6 +40,11 @@ def convert_old_properties_to_dataframe(list_properties):
     ddf_old_properties = dd.from_pandas(df_old_properties, npartitions=10)
     ddf_old_properties = remove_repeated_columns(ddf_old_properties)
     ddf_old_properties = remove_nan_rows(ddf_old_properties)
+    ddf_old_properties = ddf_old_properties.rename(columns={
+        "squareMeters": "square_meters",
+        "privateArea": "private_area",
+        "constructionArea": "construction_area",
+    })
     # Rename DataFrame
     ddf_old_properties = rename_columns(ddf_old_properties)
     return ddf_old_properties

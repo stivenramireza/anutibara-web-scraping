@@ -39,6 +39,7 @@ def clean_price(column):
 
 def clean_square_meters(column):
     column = column.str[0:-3]
+    column = column.replace('', value = '0', regex = True)
     column = column.apply(lambda meters: Decimal(sub(r'[^\d,]', '', meters)), meta=(column, 'float'))
     return column.astype(float)
 
@@ -53,13 +54,14 @@ def clean_new_private_area(column):
     return column.astype(float)
 
 def clean_old_private_area(column):
-    column = column.str[0:-2]
+    column = column.str[0:-3]
     column = column.replace('', value = '0', regex = True)
-    column = column.apply(lambda area: Decimal(sub(r'[^\d.]', '', area)), meta=(column, 'float'))
+    column = column.apply(lambda area: Decimal(sub(r'[^\d,]', '', area)), meta=(column, 'float'))
     return column.astype(float)
 
 def clean_construction_area(column):
     column = column.str[0:-3]
+    column = column.replace('', value = '0', regex = True)
     column = column.apply(lambda area: Decimal(sub(r'[^\d,]', '', area)), meta=(column, 'float'))
     return column.astype(float)
 
